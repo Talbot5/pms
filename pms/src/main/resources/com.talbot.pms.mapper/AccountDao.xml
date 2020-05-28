@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talbot.pms.pms.dao.AccountDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.talbot.pms.entity.AccountEntity" id="accountMap">
+        <result property="id" column="id"/>
+        <result property="date" column="date"/>
+        <result property="descript" column="descript"/>
+        <result property="money" column="money"/>
+        <result property="ownerId" column="owner_id"/>
+        <result property="payDate" column="pay_date"/>
+        <result property="payType" column="pay_type"/>
+        <result property="type" column="type"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talbot.pms.pms.dao.OwnerDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.talbot.pms.entity.OwnerEntity" id="ownerMap">
+        <result property="id" column="id"/>
+        <result property="age" column="age"/>
+        <result property="carId" column="car_id"/>
+        <result property="carType" column="car_type"/>
+        <result property="gender" column="gender"/>
+        <result property="house" column="house"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="phone" column="phone"/>
+        <result property="profession" column="profession"/>
+        <result property="username" column="username"/>
+    </resultMap>
+
+
+</mapper>

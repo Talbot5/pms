@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talbot.pms.pms.dao.CarPositionDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.talbot.pms.entity.CarPositionEntity" id="carPositionMap">
+        <result property="id" column="id"/>
+        <result property="isuse" column="isuse"/>
+        <result property="money" column="money"/>
+        <result property="accountId" column="account_id"/>
+        <result property="ownerId" column="owner_id"/>
+    </resultMap>
+
+
+</mapper>

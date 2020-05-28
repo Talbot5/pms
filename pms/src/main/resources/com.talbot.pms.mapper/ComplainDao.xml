@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.talbot.pms.pms.dao.ComplainDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.talbot.pms.entity.ComplainEntity" id="complainMap">
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="date" column="date"/>
+        <result property="isret" column="isret"/>
+        <result property="ownerId" column="owner_id"/>
+        <result property="retContent" column="ret_content"/>
+        <result property="title" column="title"/>
+    </resultMap>
+
+
+</mapper>
