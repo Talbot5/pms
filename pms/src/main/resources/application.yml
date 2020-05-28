@@ -3,3 +3,12 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+mybatis:
+  mapper-locations: classpath*:/com/talbot/pms/mapper/*.xml
+  type-aliases-package: com.talbot.pms.entity
+server:
+  port: 8000
+logging:
+  level:
+    com.talbot.pms.dao: debug

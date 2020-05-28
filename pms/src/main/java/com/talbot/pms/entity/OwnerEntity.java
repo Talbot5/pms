@@ -43,7 +43,7 @@ public class OwnerEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Tinyblob house;
+	private HouseEntity house;
 	/**
 	 * 
 	 */
