@@ -48,5 +48,6 @@ public class RepairEntity implements Serializable {
 	 * 
 	 */
 	private Integer score;
+	private OwnerEntity owner;
 
 }

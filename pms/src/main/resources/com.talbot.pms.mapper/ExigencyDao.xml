@@ -3,9 +3,9 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.ExigencyDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.ExigencyEntity" id="exigencyMap">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="content" column="content"/>
         <result property="title" column="title"/>
     </resultMap>

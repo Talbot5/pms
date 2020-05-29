@@ -3,11 +3,15 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.MenuRoleDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.MenuRoleEntity" id="menuRoleMap">
-        <result property="id" column="id"/>
-        <result property="mid" column="mid"/>
-        <result property="rid" column="rid"/>
+        <id property="id" column="id"></id>
+        <association property="menu" column="mid" javaType="com.talbot.pms.entity.MenuEntity">
+
+        </association>
+        <association property="role" column="rid" javaType="com.talbot.pms.entity.RoleEntity">
+
+        </association>
     </resultMap>
 
 

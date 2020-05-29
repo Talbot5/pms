@@ -12,7 +12,6 @@
         <result property="password" column="password"/>
         <result property="phone" column="phone"/>
         <result property="position" column="position"/>
-        <result property="roles" column="roles"/>
         <result property="username" column="username"/>
     </resultMap>
 

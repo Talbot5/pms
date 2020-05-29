@@ -3,13 +3,33 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.CarPositionDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.CarPositionEntity" id="carPositionMap">
-        <result property="id" column="id"/>
-        <result property="isuse" column="isuse"/>
-        <result property="money" column="money"/>
-        <result property="accountId" column="account_id"/>
-        <result property="ownerId" column="owner_id"/>
+        <id property="id" column="id" jdbcType="int"/>
+        <result property="isuse" column="isuse" jdbcType="bit"/>
+        <result property="money" column="money" jdbcType="float"/>
+        <association property="owner" column="owner_id" javaType="com.talbot.pms.entity.OwnerEntity">
+            <result property="id" column="id"/>
+            <result property="age" column="age"/>
+            <result property="carId" column="car_id"/>
+            <result property="carType" column="car_type"/>
+            <result property="gender" column="gender"/>
+            <result property="name" column="name"/>
+            <result property="password" column="password"/>
+            <result property="phone" column="phone"/>
+            <result property="profession" column="profession"/>
+            <result property="username" column="username"/>
+        </association>
+        <collection property="accountList" ofType="com.talbot.pms.entity.AccountEntity">
+            <id property="id" column="id"/>
+            <result property="date" column="date"/>
+            <result property="descript" column="descript"/>
+            <result property="money" column="money"/>
+            <result property="payDate" column="pay_date"/>
+            <result property="payType" column="pay_type"/>
+            <result property="type" column="type"/>
+        </collection>
+
     </resultMap>
 
 

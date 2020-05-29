@@ -43,6 +43,6 @@ public class HouseEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Integer ownerId;
+	private OwnerEntity owner;
 
 }

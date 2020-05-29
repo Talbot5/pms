@@ -33,7 +33,7 @@ public class ExigencyController {
     public R getExigencys(@RequestParam Map<String, Object> params) {
         PageUtils page = exigencyService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.getR(page);
     }
 
     /**
@@ -45,8 +45,10 @@ public class ExigencyController {
     @GetMapping("/{id}")
     public R getExigencyById(@PathVariable("id") Integer id) {
         ExigencyEntity exigency = exigencyService.getById(id);
-
-        return R.ok().put("exigency", exigency);
+        if (exigency != null) {
+            return R.ok().put("exigency", exigency);
+        }
+        return R.error("查询失败");
     }
 
     /**
@@ -57,9 +59,10 @@ public class ExigencyController {
      */
     @PutMapping("/")
     public R saveExigency(@RequestBody ExigencyEntity exigency) {
-        exigencyService.save(exigency);
+        if(exigencyService.save(exigency)){
 
-        return R.ok();
+        return R.ok("保存成功");}
+        return R.error("保存失败");
     }
 
     /**
@@ -70,9 +73,10 @@ public class ExigencyController {
      */
     @PostMapping("/")
     public R updateExigency(@RequestBody ExigencyEntity exigency) {
-        exigencyService.updateById(exigency);
+        if(exigencyService.updateById(exigency)){
 
-        return R.ok();
+        return R.ok("修改成功");}
+        return R.error("修改失败");
     }
 
     /**
@@ -83,9 +87,10 @@ public class ExigencyController {
      */
     @DeleteMapping("/")
     public R deleteExigency(@RequestBody Integer[] ids) {
-        exigencyService.removeByIds(Arrays.asList(ids));
+        if(exigencyService.removeByIds(Arrays.asList(ids))){
 
-        return R.ok();
+        return R.ok("删除成功");}
+        return R.error("删除失败");
     }
 
 }

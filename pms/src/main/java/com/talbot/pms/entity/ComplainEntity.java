@@ -39,7 +39,7 @@ public class ComplainEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Integer ownerId;
+	private OwnerEntity owner;
 	/**
 	 * 
 	 */

@@ -3,9 +3,9 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.MenuDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.MenuEntity" id="menuMap">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="url" column="url"/>
         <result property="path" column="path"/>
         <result property="component" column="component"/>
@@ -15,6 +15,11 @@
         <result property="requireAuth" column="require_auth"/>
         <result property="parentId" column="parent_id"/>
         <result property="enabled" column="enabled"/>
+        <collection property="roleList" ofType="com.talbot.pms.entity.RoleEntity">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="descript" column="descript"/>
+        </collection>
     </resultMap>
 
 

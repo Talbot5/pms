@@ -33,7 +33,7 @@ public class ComplainController {
     public R getComplains(@RequestParam Map<String, Object> params) {
         PageUtils page = complainService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.getR(page);
     }
 
     /**
@@ -45,8 +45,10 @@ public class ComplainController {
     @GetMapping("/{id}")
     public R getComplainById(@PathVariable("id") Integer id) {
         ComplainEntity complain = complainService.getById(id);
-
-        return R.ok().put("complain", complain);
+        if (complain != null) {
+            return R.ok().put("complain", complain);
+        }
+        return R.error("查询失败");
     }
 
     /**
@@ -57,9 +59,11 @@ public class ComplainController {
      */
     @PutMapping("/")
     public R saveComplain(@RequestBody ComplainEntity complain) {
-        complainService.save(complain);
+        if (complainService.save(complain)) {
 
-        return R.ok();
+            return R.ok("保存成功");
+        }
+        return R.error("保存失败");
     }
 
     /**
@@ -82,9 +86,11 @@ public class ComplainController {
      */
     @DeleteMapping("/")
     public R deleteComplain(@RequestBody Integer[] ids) {
-        complainService.removeByIds(Arrays.asList(ids));
+        if (complainService.removeByIds(Arrays.asList(ids))) {
 
-        return R.ok();
+            return R.ok("删除成功");
+        }
+        return R.error("删除失败");
     }
 
 }

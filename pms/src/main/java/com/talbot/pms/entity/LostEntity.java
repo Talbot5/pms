@@ -47,6 +47,6 @@ public class LostEntity implements Serializable {
 	/**
 	 * 
 	 */
-	private Integer ownerId;
+	private OwnerEntity owner;
 
 }

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -48,10 +50,6 @@ public class WorkerEntity implements Serializable {
 	 * 
 	 */
 	private String position;
-	/**
-	 * 
-	 */
-	private RoleEntity roles;
 	/**
 	 * 
 	 */

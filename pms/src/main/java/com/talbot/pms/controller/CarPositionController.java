@@ -29,11 +29,11 @@ public class CarPositionController {
      * @param params
      * @return
      */
-    @GetMapping("/")
+    @GetMapping
     public R getCarPositions(@RequestParam Map<String, Object> params) {
         PageUtils page = carPositionService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return R.getR(page);
     }
 
     /**
@@ -46,8 +46,10 @@ public class CarPositionController {
     @GetMapping("/{id}")
     public R getCarPositionById(@PathVariable("id") Integer id) {
         CarPositionEntity carPosition = carPositionService.getById(id);
-
-        return R.ok().put("carPosition", carPosition);
+        if (carPosition != null) {
+            return R.ok().put("carPosition", carPosition);
+        }
+        return R.error("查询失败");
     }
 
     /**
@@ -56,11 +58,12 @@ public class CarPositionController {
      * @param carPosition
      * @return
      */
-    @PutMapping("/")
+    @PutMapping
     public R saveCarPosition(@RequestBody CarPositionEntity carPosition) {
-        carPositionService.save(carPosition);
+        if(carPositionService.save(carPosition)){
 
-        return R.ok();
+        return R.ok("保存成功");}
+        return R.error("保存失败");
     }
 
     /**
@@ -69,11 +72,12 @@ public class CarPositionController {
      * @param carPosition
      * @return
      */
-    @PostMapping("/")
+    @PostMapping
     public R updateCarPosition(@RequestBody CarPositionEntity carPosition) {
-        carPositionService.updateById(carPosition);
+        if(carPositionService.updateById(carPosition)){
 
-        return R.ok();
+        return R.ok("修改成功");}
+        return R.error("修改失败");
     }
 
     /**
@@ -82,11 +86,12 @@ public class CarPositionController {
      * @param ids
      * @return
      */
-    @DeleteMapping("/")
+    @DeleteMapping
     public R deleteCarPosition(@RequestBody Integer[] ids) {
-        carPositionService.removeByIds(Arrays.asList(ids));
+        if(carPositionService.removeByIds(Arrays.asList(ids))){
 
-        return R.ok();
+        return R.ok("删除成功");}
+        return R.error("删除失败");
     }
 
 }

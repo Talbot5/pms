@@ -3,14 +3,25 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.HouseDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.HouseEntity" id="houseMap">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="address" column="address"/>
         <result property="num" column="num"/>
         <result property="size" column="size"/>
         <result property="unitNum" column="unit_num"/>
-        <result property="ownerId" column="owner_id"/>
+        <association property="owner" javaType="com.talbot.pms.entity.OwnerEntity">
+            <id property="id" column="id"/>
+            <result property="age" column="age"/>
+            <result property="carId" column="car_id"/>
+            <result property="carType" column="car_type"/>
+            <result property="gender" column="gender"/>
+            <result property="name" column="name"/>
+            <result property="password" column="password"/>
+            <result property="phone" column="phone"/>
+            <result property="profession" column="profession"/>
+            <result property="username" column="username"/>
+        </association>
     </resultMap>
 
 

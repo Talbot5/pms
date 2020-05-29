@@ -9,9 +9,20 @@
         <result property="content" column="content"/>
         <result property="date" column="date"/>
         <result property="isret" column="isret"/>
-        <result property="ownerId" column="owner_id"/>
         <result property="retContent" column="ret_content"/>
         <result property="title" column="title"/>
+        <association property="owner" column="owner_id" javaType="com.talbot.pms.entity.OwnerEntity">
+            <id property="id" column="id"/>
+            <result property="age" column="age"/>
+            <result property="carId" column="car_id"/>
+            <result property="carType" column="car_type"/>
+            <result property="gender" column="gender"/>
+            <result property="name" column="name"/>
+            <result property="password" column="password"/>
+            <result property="phone" column="phone"/>
+            <result property="profession" column="profession"/>
+            <result property="username" column="username"/>
+        </association>
     </resultMap>
 
 

@@ -3,15 +3,26 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.LostDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.LostEntity" id="lostMap">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="descript" column="descript"/>
         <result property="getDate" column="get_date"/>
         <result property="isget" column="isget"/>
         <result property="lostDate" column="lost_date"/>
         <result property="name" column="name"/>
-        <result property="ownerId" column="owner_id"/>
+        <association property="owner"javaType="com.talbot.pms.entity.OwnerEntity">
+            <id property="id" column="id"/>
+            <result property="age" column="age"/>
+            <result property="carId" column="car_id"/>
+            <result property="carType" column="car_type"/>
+            <result property="gender" column="gender"/>
+            <result property="name" column="name"/>
+            <result property="password" column="password"/>
+            <result property="phone" column="phone"/>
+            <result property="profession" column="profession"/>
+            <result property="username" column="username"/>
+        </association>
     </resultMap>
 
 

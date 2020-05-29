@@ -3,9 +3,9 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.ActivityDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.ActivityEntity" id="activityMap">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="beginTime" column="begin_time"/>
         <result property="content" column="content"/>
         <result property="endTime" column="end_time"/>

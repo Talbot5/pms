@@ -3,19 +3,56 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.OwnerDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.OwnerEntity" id="ownerMap">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="age" column="age"/>
         <result property="carId" column="car_id"/>
         <result property="carType" column="car_type"/>
         <result property="gender" column="gender"/>
-        <result property="house" column="house"/>
         <result property="name" column="name"/>
         <result property="password" column="password"/>
         <result property="phone" column="phone"/>
         <result property="profession" column="profession"/>
         <result property="username" column="username"/>
+        <collection property="accountList" ofType="com.talbot.pms.entity.AccountEntity">
+            <id property="id" column="id"/>
+            <result property="date" column="date"/>
+            <result property="descript" column="descript"/>
+            <result property="money" column="money"/>
+            <result property="payDate" column="pay_date"/>
+            <result property="payType" column="pay_type"/>
+            <result property="type" column="type"/>
+        </collection>
+        <collection property="houseList" ofType="com.talbot.pms.entity.HouseEntity">
+            <id property="id" column="id"/>
+            <result property="address" column="address"/>
+            <result property="num" column="num"/>
+            <result property="size" column="size"/>
+            <result property="unitNum" column="unit_num"/>
+        </collection>
+        <collection property="lostList" ofType="com.talbot.pms.entity.LostEntity">
+            <id property="id" column="id"/>
+            <result property="descript" column="descript"/>
+            <result property="getDate" column="get_date"/>
+            <result property="isget" column="isget" jdbcType="bit"/>
+            <result property="lostDate" column="lost_date"/>
+            <result property="name" column="name"/>
+        </collection>
+        <collection property="carPositionList" ofType="com.talbot.pms.entity.CarPositionEntity">
+            <id property="id" column="id" jdbcType="int"/>
+            <result property="isuse" column="isuse" jdbcType="bit"/>
+            <result property="money" column="money" jdbcType="float"/>
+        </collection>
+        <collection property="repairList" ofType="com.talbot.pms.entity.RepairEntity">
+            <id property="id" column="id"/>
+            <result property="content" column="content"/>
+            <result property="createDate" column="create_date"/>
+            <result property="evaluation" column="evaluation"/>
+            <result property="finishDate" column="finish_date"/>
+            <result property="progress" column="progress"/>
+            <result property="score" column="score"/>
+        </collection>
     </resultMap>
 
 

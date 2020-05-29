@@ -8,6 +8,7 @@
 
 package com.talbot.pms.utils;
 
+import com.sun.istack.internal.NotNull;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -25,7 +26,12 @@ public class R extends HashMap<String, Object> {
 		put("code", 0);
 		put("msg", "success");
 	}
-	
+	public static R getR(PageUtils page){
+		if (page.getList() != null && !page.getList().isEmpty()) {
+			return R.ok().put("page", page);
+		}
+		return R.error("查询失败");
+	}
 	public static R error() {
 		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, "未知异常，请联系管理员");
 	}

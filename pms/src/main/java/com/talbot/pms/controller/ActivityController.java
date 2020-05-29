@@ -29,10 +29,10 @@ public class ActivityController {
      * @param params
      * @return
      */
-    @GetMapping("/")
+    @GetMapping
     public R getActivitys(@RequestParam Map<String, Object> params) {
         PageUtils page = activityService.queryPage(params);
-        return R.ok().put("page", page);
+       return R.getR(page);
     }
 
     /**
@@ -44,8 +44,10 @@ public class ActivityController {
     @GetMapping("/{id}")
     public R getActivityById(@PathVariable("id") Integer id) {
         ActivityEntity activity = activityService.getById(id);
-
-        return R.ok().put("activity", activity);
+        if (activity != null) {
+            return R.ok().put("activity", activity);
+        }
+        return R.error("查询失败");
     }
 
     /**
@@ -54,10 +56,13 @@ public class ActivityController {
      * @param activity
      * @return
      */
-    @PutMapping("/")
+    @PutMapping
     public R saveActivity(@RequestBody ActivityEntity activity) {
-        activityService.save(activity);
-        return R.ok();
+
+        if (activityService.save(activity)) {
+            return R.ok("保存成功");
+        }
+        return R.error("保存失败");
     }
 
     /**
@@ -66,10 +71,12 @@ public class ActivityController {
      * @param activity
      * @return
      */
-    @PostMapping("/")
+    @PostMapping
     public R updateActivity(@RequestBody ActivityEntity activity) {
-        activityService.updateById(activity);
-        return R.ok();
+        if (activityService.updateById(activity)) {
+            return R.ok("修改成功");
+        }
+        return R.error("修改失败");
     }
 
     /**
@@ -78,11 +85,12 @@ public class ActivityController {
      * @param ids
      * @return
      */
-    @DeleteMapping("/")
+    @DeleteMapping
     public R deleteActivityByIds(@RequestBody Integer[] ids) {
-        activityService.removeByIds(Arrays.asList(ids));
-
-        return R.ok();
+        if (activityService.removeByIds(Arrays.asList(ids))) {
+            return R.ok("删除成功");
+        }
+        return R.error("删除失败");
     }
 
 }

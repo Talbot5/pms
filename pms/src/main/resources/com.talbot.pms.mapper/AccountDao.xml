@@ -3,16 +3,27 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.AccountDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.AccountEntity" id="accountMap">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="date" column="date"/>
         <result property="descript" column="descript"/>
         <result property="money" column="money"/>
-        <result property="ownerId" column="owner_id"/>
         <result property="payDate" column="pay_date"/>
         <result property="payType" column="pay_type"/>
         <result property="type" column="type"/>
+        <association property="owner" column="owner_id" javaType="com.talbot.pms.entity.OwnerEntity">
+            <id property="id" column="id"/>
+            <result property="age" column="age"/>
+            <result property="carId" column="car_id"/>
+            <result property="carType" column="car_type"/>
+            <result property="gender" column="gender"/>
+            <result property="name" column="name"/>
+            <result property="password" column="password"/>
+            <result property="phone" column="phone"/>
+            <result property="profession" column="profession"/>
+            <result property="username" column="username"/>
+        </association>
     </resultMap>
 
 

@@ -3,9 +3,9 @@
 
 <mapper namespace="com.talbot.pms.pms.dao.NoticeDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.talbot.pms.entity.NoticeEntity" id="noticeMap">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="content" column="content"/>
         <result property="pubTime" column="pub_time"/>
         <result property="title" column="title"/>

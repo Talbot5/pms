@@ -23,8 +23,6 @@ import com.talbot.pms.service.AccountService;
 public class AccountController {
     @Autowired
     private AccountService accountService;
-    @Autowired
-    private OwnerService ownerService;
 
     /**
      * 条件分页查询
@@ -32,20 +30,22 @@ public class AccountController {
      * @param params
      * @return
      */
-    @GetMapping("/")
+    @GetMapping
     public R getAccounts(@RequestParam Map<String, Object> params) {
         PageUtils page = accountService.queryPage(params);
-        return R.ok().put("page", page);
+        return R.getR(page);
     }
 
     /**
      * 修改
      */
-    @PostMapping("/")
+    @PostMapping
     public R updateAccount(@RequestBody AccountEntity account) {
-        accountService.updateById(account);
 
-        return R.ok();
+        if (accountService.updateById(account)) {
+            return R.ok("修改成功");
+        }
+        return R.error("修改失败");
     }
 
     /**
@@ -57,8 +57,10 @@ public class AccountController {
     @GetMapping("/{id}")
     public R getAccountById(@PathVariable("id") Integer id) {
         AccountEntity account = accountService.getById(id);
-
-        return R.ok().put("account", account);
+        if (account != null) {
+            return R.ok().put("account", account);
+        }
+        return R.error("查询失败");
     }
 
     /**
@@ -67,11 +69,12 @@ public class AccountController {
      * @param account
      * @return
      */
-    @PutMapping("/")
+    @PutMapping
     public R saveAccount(@RequestBody AccountEntity account) {
-        accountService.save(account);
-
-        return R.ok();
+        if (accountService.save(account)) {
+            return R.ok("保存成功");
+        }
+        return R.error("保存失败");
     }
 
     /**
@@ -80,11 +83,12 @@ public class AccountController {
      * @param ids
      * @return
      */
-    @DeleteMapping("/")
+    @DeleteMapping
     public R deleteAccount(@RequestBody Integer[] ids) {
-        accountService.removeByIds(Arrays.asList(ids));
-
-        return R.ok();
+        if (accountService.removeByIds(Arrays.asList(ids))) {
+            return R.ok("删除成功");
+        }
+        return R.error("删除失败");
     }
 
 
