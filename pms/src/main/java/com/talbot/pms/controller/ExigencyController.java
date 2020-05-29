@@ -4,11 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.talbot.pms.entity.ExigencyEntity;
 import com.talbot.pms.service.ExigencyService;
@@ -16,10 +12,7 @@ import com.talbot.pms.utils.PageUtils;
 import com.talbot.pms.utils.R;
 
 
-
 /**
- * 
- *
  * @author Talbot
  * @email 2806972787@qq.com
  * @date 2020-05-28 22:12:42
@@ -31,52 +24,66 @@ public class ExigencyController {
     private ExigencyService exigencyService;
 
     /**
-     * 列表
+     * 条件分页查询
+     *
+     * @param params
+     * @return
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
+    @GetMapping("/")
+    public R getExigencys(@RequestParam Map<String, Object> params) {
         PageUtils page = exigencyService.queryPage(params);
 
         return R.ok().put("page", page);
     }
 
-
     /**
-     * 信息
+     * 根据id查询
+     *
+     * @param id
+     * @return
      */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Integer id){
-		ExigencyEntity exigency = exigencyService.getById(id);
+    @GetMapping("/{id}")
+    public R getExigencyById(@PathVariable("id") Integer id) {
+        ExigencyEntity exigency = exigencyService.getById(id);
 
         return R.ok().put("exigency", exigency);
     }
 
     /**
      * 保存
+     *
+     * @param exigency
+     * @return
      */
-    @RequestMapping("/save")
-    public R save(@RequestBody ExigencyEntity exigency){
-		exigencyService.save(exigency);
+    @PutMapping("/")
+    public R saveExigency(@RequestBody ExigencyEntity exigency) {
+        exigencyService.save(exigency);
 
         return R.ok();
     }
 
     /**
      * 修改
+     *
+     * @param exigency
+     * @return
      */
-    @RequestMapping("/update")
-    public R update(@RequestBody ExigencyEntity exigency){
-		exigencyService.updateById(exigency);
+    @PostMapping("/")
+    public R updateExigency(@RequestBody ExigencyEntity exigency) {
+        exigencyService.updateById(exigency);
 
         return R.ok();
     }
 
     /**
      * 删除
+     *
+     * @param ids
+     * @return
      */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Integer[] ids){
-		exigencyService.removeByIds(Arrays.asList(ids));
+    @DeleteMapping("/")
+    public R deleteExigency(@RequestBody Integer[] ids) {
+        exigencyService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

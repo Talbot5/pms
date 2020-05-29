@@ -4,11 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.talbot.pms.entity.WorkerEntity;
 import com.talbot.pms.service.WorkerService;
@@ -16,10 +12,7 @@ import com.talbot.pms.utils.PageUtils;
 import com.talbot.pms.utils.R;
 
 
-
 /**
- * 
- *
  * @author Talbot
  * @email 2806972787@qq.com
  * @date 2020-05-28 22:12:42
@@ -31,54 +24,69 @@ public class WorkerController {
     private WorkerService workerService;
 
     /**
-     * 列表
+     * 条件分页查询
+     *
+     * @param params
+     * @return
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
+    @GetMapping("/")
+    public R getWorkers(@RequestParam Map<String, Object> params) {
         PageUtils page = workerService.queryPage(params);
 
         return R.ok().put("page", page);
     }
 
-
     /**
-     * 信息
+     * 根据id查询
+     *
+     * @param id
+     * @return
      */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Integer id){
-		WorkerEntity worker = workerService.getById(id);
+    @GetMapping("/{id}")
+    public R getWorkerById(@PathVariable("id") Integer id) {
+        WorkerEntity worker = workerService.getById(id);
 
         return R.ok().put("worker", worker);
     }
 
     /**
      * 保存
+     *
+     * @param worker
+     * @return
      */
-    @RequestMapping("/save")
-    public R save(@RequestBody WorkerEntity worker){
-		workerService.save(worker);
+    @PutMapping("/")
+    public R saveWorker(@RequestBody WorkerEntity worker) {
+        workerService.save(worker);
 
         return R.ok();
     }
 
     /**
      * 修改
+     *
+     * @param worker
+     * @return
      */
-    @RequestMapping("/update")
-    public R update(@RequestBody WorkerEntity worker){
-		workerService.updateById(worker);
+    @PostMapping("/")
+    public R updateWorker(@RequestBody WorkerEntity worker) {
+        workerService.updateById(worker);
 
         return R.ok();
     }
 
     /**
      * 删除
+     *
+     * @param ids
+     * @return
      */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Integer[] ids){
-		workerService.removeByIds(Arrays.asList(ids));
+    @DeleteMapping("/")
+    public R deleteWorker(@RequestBody Integer[] ids) {
+        workerService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }
+
 
 }

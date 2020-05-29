@@ -4,11 +4,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.parameters.P;
+import org.springframework.web.bind.annotation.*;
 
 import com.talbot.pms.entity.LostEntity;
 import com.talbot.pms.service.LostService;
@@ -16,10 +13,7 @@ import com.talbot.pms.utils.PageUtils;
 import com.talbot.pms.utils.R;
 
 
-
 /**
- * 
- *
  * @author Talbot
  * @email 2806972787@qq.com
  * @date 2020-05-28 22:12:42
@@ -31,54 +25,69 @@ public class LostController {
     private LostService lostService;
 
     /**
-     * 列表
+     * 条件分页查询
+     *
+     * @param params
+     * @return
      */
-    @RequestMapping("/list")
-    public R list(@RequestParam Map<String, Object> params){
+    @GetMapping("/")
+    public R getLosts(@RequestParam Map<String, Object> params) {
         PageUtils page = lostService.queryPage(params);
 
         return R.ok().put("page", page);
     }
 
-
     /**
-     * 信息
+     * 根据id查询
+     *
+     * @param id
+     * @return
      */
-    @RequestMapping("/info/{id}")
-    public R info(@PathVariable("id") Integer id){
-		LostEntity lost = lostService.getById(id);
+    @GetMapping("/{id}")
+    public R getLostById(@PathVariable("id") Integer id) {
+        LostEntity lost = lostService.getById(id);
 
         return R.ok().put("lost", lost);
     }
 
     /**
      * 保存
+     *
+     * @param lost
+     * @return
      */
-    @RequestMapping("/save")
-    public R save(@RequestBody LostEntity lost){
-		lostService.save(lost);
+    @PutMapping("/")
+    public R saveLost(@RequestBody LostEntity lost) {
+        lostService.save(lost);
 
         return R.ok();
     }
 
     /**
      * 修改
+     *
+     * @param lost
+     * @return
      */
-    @RequestMapping("/update")
-    public R update(@RequestBody LostEntity lost){
-		lostService.updateById(lost);
+    @PostMapping("/")
+    public R updateLost(@RequestBody LostEntity lost) {
+        lostService.updateById(lost);
 
         return R.ok();
     }
 
     /**
      * 删除
+     *
+     * @param ids
+     * @return
      */
-    @RequestMapping("/delete")
-    public R delete(@RequestBody Integer[] ids){
-		lostService.removeByIds(Arrays.asList(ids));
+    @DeleteMapping("/")
+    public R deleteLost(@RequestBody Integer[] ids) {
+        lostService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }
+
 
 }
